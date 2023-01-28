@@ -1,0 +1,7 @@
+syntax = "proto3";
+package v1;
+
+message UserInfo {
+  string nickname = 1;
+  string profile_url = 2;
+}
