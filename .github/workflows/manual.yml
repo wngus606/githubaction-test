@@ -12,3 +12,4 @@ jobs:
       - name: protoc build
         run: |
           ls -al
+          protoc -v
