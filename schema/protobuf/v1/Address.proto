@@ -1,0 +1,7 @@
+syntax = "proto3";
+package v1;
+
+message AddressMsg {
+  string zip = 1;
+  string address = 2;
+}
