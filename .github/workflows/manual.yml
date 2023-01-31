@@ -18,3 +18,9 @@ jobs:
         run: |
           ls -al
           protoc --version
+          WARNING_MESSAGE=$(protoc --python_out=./generated/python -I=./schema/protobuf/ ./schema/protobuf/v1/User.proto 2>&1)
+          if [[ "$WARNING_MESSAGE" =~ "warning" ]]; then
+            echo "found"
+          else
+            echo "not found"
+          fi
