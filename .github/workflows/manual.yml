@@ -11,9 +11,8 @@ jobs:
           ref: main
       - name: Install Protoc
         run: |
-          export PROTOBUF_VERSION=3.19.2
-          curl -LO $https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOBUF_VERSION}/protoc-${PROTOBUF_VERSION}-osx-x86_64.zip
-          unzip protoc-${PROTOBUF_VERSION}-osx-x86_64.zip -d $HOME/.local
+          curl -LO $https://github.com/protocolbuffers/protobuf/releases/download/v3.19.2/protoc-3.19.2-osx-x86_64.zip
+          unzip protoc-3.19.2-osx-x86_64.zip -d $HOME/.local
           export PATH="$PATH:$HOME/.local/bin"
       - name: Protoc Build
         run: |
