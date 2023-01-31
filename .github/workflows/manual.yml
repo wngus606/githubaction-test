@@ -17,7 +17,7 @@ jobs:
           export PATH="$PATH:$HOME/.local/bin"
       - name: Protoc Build
         run: |
-          WARNING_MESSAGE=$(make - build.protoc 2>&1)
+          WARNING_MESSAGE=$(make -s build.protoc 2>&1)
           if [[ "$WARNING_MESSAGE" =~ "warning" ]]; then
             echo $WARNING_MESSAGE
             exit 1
