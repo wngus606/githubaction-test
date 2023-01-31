@@ -9,7 +9,11 @@ jobs:
         with:
           fetch-depth: 0
           ref: main
-      - name: protoc build
+      - name: Install Protoc
+        uses: arduino/setup-protoc@v1
+        with:
+          version: '3.19.4'
+      - name: Protoc Build
         run: |
           ls -al
-          protoc -v
+          protoc --version
