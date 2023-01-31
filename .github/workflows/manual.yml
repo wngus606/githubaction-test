@@ -5,11 +5,10 @@ jobs:
   protoc:
     runs-on: ubuntu-latest
     steps:
-    - name: protoc build
-      run: |
-        WARNING_MESSAGE=$(protoc --python_out=./generated/python -I=./schema/protobuf/ ./schema/protobuf/v1/User.proto 2>&1)
-        if [[ "$WARNING_MESSAGE" =~ "warning" ]]; then
-          echo "found"
-        else
-          echo "not found"
-        fi
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: main
+      - name: protoc build
+        run: |
+          ls -al
