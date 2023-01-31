@@ -10,9 +10,11 @@ jobs:
           fetch-depth: 0
           ref: main
       - name: Install Protoc
-        uses: arduino/setup-protoc@v1
-        with:
-          version: '3.19.4'
+        run: |
+          export PROTOBUF_VERSION=3.19.2
+          curl -LO $https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOBUF_VERSION}/protoc-${PROTOBUF_VERSION}-osx-x86_64.zip
+          unzip protoc-${PROTOBUF_VERSION}-osx-x86_64.zip -d $HOME/.local
+          export PATH="$PATH:$HOME/.local/bin"
       - name: Protoc Build
         run: |
           ls -al
