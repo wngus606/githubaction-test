@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          ref: main
+          ref: ${{ github.head_ref }}
       - name: Install Protoc
         run: |
           curl -LO https://github.com/protocolbuffers/protobuf/releases/download/v3.19.2/protoc-3.19.2-linux-x86_64.zip
@@ -17,8 +17,9 @@ jobs:
           export PATH="$PATH:$HOME/.local/bin"
       - name: Protoc Build
         run: |
-          WARNING_MESSAGE=$(make -s build.protoc 2>&1)
-          if [[ "$WARNING_MESSAGE" =~ "warning" ]]; then
+          git branch --show-current
+          WARNING_MESSAGE=$(protoc --python_out=./generated/python -I=./schema/protobuf/ ./schema/protobuf/v1/User.proto 2>&1)
+          if [[ "$WARNING_MESSAGE" =~ "WARNING" ]]; then
             echo $WARNING_MESSAGE
             exit 1
           else
